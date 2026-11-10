@@ -140,3 +140,51 @@ p{margin:0 0 16px}img{display:block;max-width:100%}
 .research-entry .research-summary { color: #687482; }
 .coauthor-link { color: var(--navy); text-decoration: underline; text-decoration-color: #b4c2cf; text-underline-offset: 3px; }
 .coauthor-link:hover, .coauthor-link:focus-visible { text-decoration-color: currentColor; }
+
+/* Abstract-only research presentation */
+.research-abstract-action { margin: 10px 0 0; font-size: 13px; }
+.research-abstract-action a { color: #315b83; text-decoration: none; border-bottom: 1px solid #b6c6d5; }
+.research-abstract-action a:hover, .research-abstract-action a:focus-visible { color: #123b63; border-bottom-color: #123b63; }
+.paper-abstract { margin-top: 32px; }
+
+
+/* Nov 9 refinement: focused homepage and in-place research abstracts */
+.home-header .header-inner { justify-content: flex-end; }
+.home-header .site-nav { margin-left: auto; }
+.home-title { font-size: clamp(46px, 5vw, 64px); margin-bottom: 28px; }
+.home-welcome { font-size: 17px; line-height: 1.55; color: var(--ink); margin: 0 0 14px; font-weight: 500; }
+.research-abstract-disclosure { margin-top: 13px; }
+.research-abstract-disclosure > summary {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 6px 14px; border: 1px solid #ccd7e3; border-radius: 2px;
+  background: #fff; color: var(--navy); font-size: 12px; font-weight: 600;
+  cursor: pointer; list-style: none; user-select: none;
+}
+.research-abstract-disclosure > summary::-webkit-details-marker { display: none; }
+.research-abstract-disclosure > summary::after { content: '+'; font-size: 17px; font-weight: 400; line-height: 1; }
+.research-abstract-disclosure[open] > summary::after { content: '−'; }
+.research-abstract-disclosure > summary:hover, .research-abstract-disclosure[open] > summary { background: #f5f8fb; border-color: #9fb4c8; }
+.research-abstract-body {
+  max-width: 790px; border: 1px solid #e1e8ef; background: #f9fbfd;
+  margin-top: 12px; padding: 16px 19px; border-radius: 2px;
+}
+.research-abstract-body p { margin: 0; font-size: 14px; line-height: 1.82; color: #3c4d60; }
+@media(max-width:800px) {
+  .home-header .header-inner { justify-content: flex-end; }
+  .home-title { font-size: clamp(41px, 9vw, 55px); margin-bottom: 24px; }
+  .home-welcome { font-size: 16px; }
+  .research-abstract-body { padding: 14px 15px; }
+}
+
+/* Nov 9 homepage refinement: one-line desktop name, with breathing room.
+   On phones, allow the name to wrap to avoid horizontal overflow. */
+.home-title {
+  font-size: clamp(38px, 4.35vw, 58px);
+  white-space: nowrap;
+  letter-spacing: -0.034em;
+  margin: 0 0 35px;
+}
+.home-welcome { font-weight: 700; }
+@media (max-width: 800px) {
+  .home-title { font-size: clamp(37px, 8vw, 52px); white-space: normal; margin: 4px 0 26px; }
+}
