@@ -189,7 +189,187 @@ p{margin:0 0 16px}img{display:block;max-width:100%}
   .home-title { font-size: clamp(37px, 8vw, 52px); white-space: normal; margin: 4px 0 26px; }
 }
 
+
+/* Nov 9: justify the homepage biography (last lines stay naturally left-aligned). */
 .home-bio p {
   text-align: justify;
   text-justify: inter-word;
+}
+
+/* Mobile navigation: display Home / Research / CV / Contact in a row,
+   rather than hiding them behind a Menu button. */
+@media (max-width: 800px) {
+  .menu-toggle { display: none !important; }
+  .site-header .header-inner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding-top: 9px;
+  }
+  .site-header .brand {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  .site-header .site-nav,
+  .site-header .site-nav.is-open {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+  .site-header .site-nav a {
+    font-size: 13px;
+    padding: 11px 0 13px;
+    white-space: nowrap;
+  }
+  .site-header .site-nav a[aria-current=page]::after {
+    display: block;
+    bottom: 6px;
+  }
+  .home-header .header-inner { padding-top: 0; }
+}
+
+/* Research Option 1: quiet publication list with expandable inline abstracts. */
+.research-minimal-page { max-width: 900px; }
+.research-minimal-page > h1 { margin-bottom: 34px; }
+.research-minimal-page .research-list { margin: 0; padding: 0; }
+.research-minimal-page .research-entry {
+  max-width: 835px;
+  margin: 0;
+  padding: 27px 0 32px;
+  border-bottom: 1px solid #e2e8ee;
+}
+.research-minimal-page .research-entry:first-child { padding-top: 6px; }
+.research-minimal-page .research-entry:last-child { border-bottom: 0; }
+.research-minimal-page .research-entry h3 {
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 0 0 10px;
+  letter-spacing: -0.016em;
+}
+.research-minimal-page .research-byline { margin: 0 0 12px; font-size: 13px; }
+.research-minimal-page .research-abstract-disclosure { margin: 0; }
+.research-minimal-page .research-abstract-disclosure > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.research-minimal-page .research-abstract-disclosure > summary::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 150ms ease;
+  font-size: inherit;
+  line-height: inherit;
+}
+.research-minimal-page .research-abstract-disclosure[open] > summary::after {
+  content: '';
+  transform: translateY(2px) rotate(225deg);
+}
+.research-minimal-page .research-abstract-disclosure > summary:hover,
+.research-minimal-page .research-abstract-disclosure[open] > summary {
+  background: transparent;
+  border: 0;
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.research-minimal-page .research-abstract-disclosure > summary:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 4px;
+}
+.research-minimal-page .research-abstract-body {
+  max-width: 790px;
+  margin-top: 15px;
+  padding: 15px 19px;
+  border: 0;
+  border-left: 2px solid #d4dee8;
+  background: #f9fbfd;
+}
+@media (max-width: 800px) {
+  .research-minimal-page > h1 { margin-bottom: 20px; }
+  .research-minimal-page .research-entry { padding: 23px 0 27px; }
+  .research-minimal-page .research-entry h3 { font-size: 19px; line-height: 1.4; }
+  .research-minimal-page .research-abstract-body { padding: 14px 15px; }
+}
+
+
+/* Mobile navigation: icon-only hamburger that opens a dropdown. */
+@media (max-width: 800px) {
+  .site-header .header-inner {
+    position: relative;
+    min-height: 68px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 0;
+  }
+  .site-header.home-header .header-inner { justify-content: flex-end; }
+  .site-header .brand { margin-bottom: 0; }
+  .site-header .menu-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    font-size: 0; /* Hide visible 'Menu ☰', preserve accessible button text. */
+    line-height: 1;
+    border: 0;
+    background: transparent;
+  }
+  .site-header .menu-toggle::after {
+    content: "☰";
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .site-header .site-nav,
+  .site-header .site-nav.is-open {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    width: 100%;
+    margin: 0;
+    padding: 10px 18px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 20px rgba(7,27,51,.06);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .site-header .site-nav { display: none !important; }
+  .site-header .site-nav.is-open { display: flex !important; }
+  .site-header .site-nav a {
+    font-size: 14px;
+    padding: 9px 0;
+  }
+  .site-header .site-nav a[aria-current=page]::after { display: none; }
 }
