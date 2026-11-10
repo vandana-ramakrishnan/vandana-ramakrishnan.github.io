@@ -188,3 +188,8 @@ p{margin:0 0 16px}img{display:block;max-width:100%}
 @media (max-width: 800px) {
   .home-title { font-size: clamp(37px, 8vw, 52px); white-space: normal; margin: 4px 0 26px; }
 }
+
+.home-bio p {
+  text-align: justify;
+  text-justify: inter-word;
+}
