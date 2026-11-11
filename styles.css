@@ -373,3 +373,10 @@ p{margin:0 0 16px}img{display:block;max-width:100%}
   }
   .site-header .site-nav a[aria-current=page]::after { display: none; }
 }
+
+/* Justify text in research abstracts */
+.research-abstract-disclosure p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
